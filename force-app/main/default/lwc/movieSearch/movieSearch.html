@@ -1,0 +1,79 @@
+<template>
+    <!--Filter Section-->
+    <div class="slds-box slds-theme_shade slds-theme_alert-texture filterstyle">
+        <lightning-layout horizontal-align="center">
+            <lightning-layout-item
+            padding="around-small"
+            size="3"
+            >
+            <lightning-combobox
+            name="type"
+            label="Type"
+            value={selectedType}
+            placeholder="Select Type"
+            options={typeoptions}
+            onchange={handleChange}
+                       
+             ></lightning-combobox>
+        
+        </lightning-layout-item>
+
+            <lightning-layout-item
+            padding="around-small"
+            size="7"
+            >
+            <lightning-input
+            name="search"
+            value={selectedSearch}
+            label="Enter Search Item"
+            placeholder="Search For Movie/Series..."
+            type="search"
+            is-loading={loading}
+            onchange={handleChange}
+                       
+        >
+        </lightning-input>
+        </lightning-layout-item>
+
+            <lightning-layout-item
+            padding="around-small"
+            size="2"
+            >
+            <lightning-input
+            type="number"
+            label="Page"
+            name="pageno"
+            onchange={handleChange}
+            value={selectedPageNo}
+            field-level-help="Rang 1-100"
+            min="1"
+            max="100"
+            step="1"
+            message-when-range-underflow="Minmum Value 1"
+            message-when-range-overflow="Maximum Value 100"
+
+            ></lightning-input>
+        </lightning-layout-item>
+        </lightning-layout>
+    </div>
+    <template lwc:if={displaySearchResult}>
+    <!--Display Section-->
+    <div class="slds-var-m-top_large slds-scrollable_y slds-box displaystyle">
+        <lightning-layout horizontal-align="center" multiple-rows="true">
+            <template for:each={searchResult} for:item="searhItem">
+                <lightning-layout-item
+                size="3"
+                padding="around-small"
+                key={searhItem.imdbID}
+                >
+                <c-movie-tile movie={searhItem}
+                onselectmovie = {movieSelectedHandler}
+                selected-movie-id = {selectedMovie}
+                ></c-movie-tile>
+            </lightning-layout-item>
+                       
+        </template>
+        </lightning-layout>
+    </div>
+</template>
+</template>
