@@ -40,7 +40,7 @@ export default class MovieDetail extends LightningElement {
     // Handler for message received by component
     handleMessage(message) {
         let movieData = message.movieId;
-        console("movieData", movieData);
+        console.log("movieData", movieData);
     }
     
     unsubscribeToMessageChannel() {
