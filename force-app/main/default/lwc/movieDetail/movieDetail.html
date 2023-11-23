@@ -1,3 +1,35 @@
 <template>
-    <lightning-card title="Selected Movie Details"></lightning-card>
+    <template lwc:if={loadComponent}>
+        <div class="slds-var-p-around_small container">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-var-m-around_small poster">
+                  <img src={movieDetails.Poster} alt="Image Not Found">
+                </div>
+                <div class="slds-col">
+                  <h1 class="slds-var-m-top_small mtitle">{movieDetails.Title}</h1>
+                  <div class="slds-var-m-top_small info">
+                    <p><b>Year  :</b>{movieDetails.Year}</p>
+                    <p><b>Rating :</b>{movieDetails.imdbRating}</p>
+                    <p><b>Released  :</b>{movieDetails.Released}</p>
+                    <p><b>Genre :</b>{movieDetails.Genre}</p>
+                    <p><b>Director  :</b>{movieDetails.Director}</p>
+                    <p><b>Writer    :</b>{movieDetails.Writer}</p>
+                    <p><b>Actors    :</b>{movieDetails.Actors}</p>
+                    <p><b>Plot  :</b>{movieDetails.Plot}</p>
+                    <p><b>Language  :</b>{movieDetails.Language}</p>
+                    <p><b>Country  :</b>{movieDetails.Country}</p>
+                    
+                    <lightning-icon
+                    size="medium"
+                    icon-name="custom:custom1"
+
+                    ></lightning-icon>
+                    &nbsp;&nbsp; {movieDetails.Awards}
+                </div>
+                </div>
+
+              </div>
+        </div>
+
+    </template>
 </template>

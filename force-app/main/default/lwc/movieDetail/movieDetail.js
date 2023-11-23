@@ -10,9 +10,9 @@ import {
 import MOVIE_CHANNEL from '@salesforce/messageChannel/moviesChannel__c';
 
 export default class MovieDetail extends LightningElement {
-    
+    loadComponent = false;
     subscription = null;
-    
+    movieDetails = {};
     @wire(MessageContext)
     messageContext;
 
@@ -41,6 +41,7 @@ export default class MovieDetail extends LightningElement {
     handleMessage(message) {
         let movieData = message.movieId;
         console.log("movieData", movieData);
+        this.fetchMovieDetail(movieData);
     }
     
     unsubscribeToMessageChannel() {
@@ -48,5 +49,13 @@ export default class MovieDetail extends LightningElement {
         this.subscription = null;
     }
 
+    async fetchMovieDetail(movieData){
+        let url = `https://www.omdbapi.com/?i=${movieData}&plot=full&apikey=bbc9d69f`;
+        const res = await fetch(url);
+        const data = await res.json();
+        console.log("Movie Details",data);
+        this.loadComponent = true;
+        this.movieDetails = data;
+    }
 
 }
